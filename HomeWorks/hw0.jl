@@ -19,7 +19,7 @@ md"_homework 0, version 2_"
 # ╔═╡ 7308bc54-e6cd-11ea-0eab-83f7535edf25
 # edit the code below to set your name and kerberos ID (i.e. email without @mit.edu)
 
-student = (name = "Jazzy Doe", kerberos_id = "jazz")
+student = (name = "Pedro Romero", kerberos_id = "promerol")
 
 # press the ▶ button in the bottom right of this cell to run your edits
 # or use Shift+Enter
@@ -30,7 +30,7 @@ student = (name = "Jazzy Doe", kerberos_id = "jazz")
 # ╔═╡ cdff6730-e785-11ea-2546-4969521b33a7
 md"""
 
-Submission by: **_$(student.name)_** ($(student.kerberos_id)@mit.edu)
+Submission by: **_$(student.name)_** ($(student.kerberos_id)@unal.edu.co)
 """
 
 # ╔═╡ a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
@@ -99,7 +99,13 @@ Write a function newton_sqrt(x) which implements the above algorithm."
 
 # ╔═╡ 4896bf0c-e754-11ea-19dc-1380bb356ab6
 function newton_sqrt(x, error_margin=0.01, a=x / 2) # a=x/2 is the default value of `a`
-	return x # this is wrong, write your code here!
+	diff = 1
+	while diff > error_margin
+		ai = ((x/a)+a)/2
+		diff = abs((a-ai)/a)
+		a=ai
+	end
+	return a # this is wrong, write your code here!
 end
 
 # ╔═╡ 7a01a508-e78a-11ea-11da-999d38785348
@@ -182,7 +188,7 @@ end
 md"Just like the definition above, our `sierpinksi` function is _recursive_: it calls itself."
 
 # ╔═╡ 02b9c9d6-e752-11ea-0f32-91b7b6481684
-complexity = 3
+complexity = 5
 
 # ╔═╡ 1eb79812-e7b5-11ea-1c10-63b24803dd8a
 if complexity == 3 
@@ -216,8 +222,30 @@ area_sierpinski(1) = 0.??
 
 # ╔═╡ ca8d2f72-e7b6-11ea-1893-f1e6d0a20dc7
 function area_sierpinski(n)
-	return 1.0
+	a = (2/3)*(3^(3/4))
+	for i = 1 : n
+		ai = a/2
+		a = ai
+	end
+	area = (((a^2)*sqrt(3))/4)*3^n
+	return area/1
 end
+
+# ╔═╡ 0e2c1aaa-0208-11eb-2a50-f17a135c4e55
+md"""
+El area (S) de un triangulo rectangulo es igual a:
+ 
+$S = \frac{a^2\sqrt{3}}{4}$
+
+Donde $a$ es la longitud del lado del triangulo equilatero.
+
+Si despejamos $a$ cuando $S = 1$ obtenemos que $a = \frac{2}{3}\cdot 3^{3/4}$.
+
+Por inspección logramos ver que el lado del nuevo triangulo generado en cada iteración se reduce a la mitad con respecto al anterior, y finalmente la cantidad de triangulos oscuros luego de $n$ iteraciones es igual a $3^n$. De donde si aplicamos la ecuación inicial para hallar el valor del lado $a$ del triangulo $n$-ésimo tendremos que el area sera igual a $3^n$ veces el valor obtenido.
+"""
+
+# ╔═╡ 135aeff0-0206-11eb-28bf-95d2dd52cc07
+area_sierpinski(0)
 
 # ╔═╡ 71c78614-e7bc-11ea-0959-c7a91a10d481
 if area_sierpinski(0) == 1.0 && area_sierpinski(1) == 3 / 4
@@ -293,7 +321,7 @@ end
 sierpinski(complexity)
 
 # ╔═╡ df0a4068-e7b2-11ea-2475-81b237d492b3
-sierpinski.(0:6)
+sierpinski.(0:3)
 
 # ╔═╡ 147ed7b0-e856-11ea-0d0e-7ff0d527e352
 md"""
@@ -337,6 +365,8 @@ has area **$(area_sierpinski(n))**
 # ╠═df0a4068-e7b2-11ea-2475-81b237d492b3
 # ╟─f22222b4-e7b5-11ea-0ea0-8fa368d2a014
 # ╠═ca8d2f72-e7b6-11ea-1893-f1e6d0a20dc7
+# ╟─0e2c1aaa-0208-11eb-2a50-f17a135c4e55
+# ╠═135aeff0-0206-11eb-28bf-95d2dd52cc07
 # ╟─71c78614-e7bc-11ea-0959-c7a91a10d481
 # ╟─c21096c0-e856-11ea-3dc5-a5b0cbf29335
 # ╟─52533e00-e856-11ea-08a7-25e556fb1127
