@@ -1,5 +1,5 @@
 ### A Pluto.jl notebook ###
-# v0.11.14
+# v0.11.13
 
 using Markdown
 using InteractiveUtils
@@ -221,7 +221,7 @@ area_sierpinski(1) = 0.??
 """
 
 # ╔═╡ ca8d2f72-e7b6-11ea-1893-f1e6d0a20dc7
-function area_sierpinski(n)
+function area_sierpinskiold(n)
 	a = (2/3)*(3^(3/4))
 	for i = 1 : n
 		ai = a/2
@@ -231,7 +231,7 @@ function area_sierpinski(n)
 	return area/1
 end
 
-# ╔═╡ 0e2c1aaa-0208-11eb-2a50-f17a135c4e55
+# ╔═╡ c94a0484-0346-11eb-1e6a-09134e92f2cd
 md"""
 El area (S) de un triangulo rectangulo es igual a:
  
@@ -242,10 +242,46 @@ Donde $a$ es la longitud del lado del triangulo equilatero.
 Si despejamos $a$ cuando $S = 1$ obtenemos que $a = \frac{2}{3}\cdot 3^{3/4}$.
 
 Por inspección logramos ver que el lado del nuevo triangulo generado en cada iteración se reduce a la mitad con respecto al anterior, y finalmente la cantidad de triangulos oscuros luego de $n$ iteraciones es igual a $3^n$. De donde si aplicamos la ecuación inicial para hallar el valor del lado $a$ del triangulo $n$-ésimo tendremos que el area sera igual a $3^n$ veces el valor obtenido.
+
+- Alexander:
+No entiendo cómo llegó a esa fórmula. 
+
+Note que el área del triángulo es base por altura. Así el área del primer triángulo es A0=1.
+
+En la primera iteración se remueve una cuarta parte es decir que quedan 3/4 A1
+Luego uno ve que esto se repite An+1=3/4An.
+En general se tiene que 
+An = (3/4)^n
 """
+
+
+# ╔═╡ 3b0576d6-0346-11eb-3317-ed1762184688
+function area_sierpinski(n)
+	return (3/4)^n
+end
+
+# ╔═╡ f2330b48-0346-11eb-2889-314ea50d9173
+md"""
+También se puede hacer de forma recursiva 
+
+area_sierpinski(n+1)=3/4*area_sierpinski(n)
+"""
+
+
+# ╔═╡ 51e6aaae-0347-11eb-3dc3-eb8890f5a13c
+function rec_area(n)
+	if n == 0 
+		return 1
+	else
+		return 3/4*rec_area(n-1)
+	end
+end
 
 # ╔═╡ 135aeff0-0206-11eb-28bf-95d2dd52cc07
 area_sierpinski(0)
+
+# ╔═╡ 7f199b80-0347-11eb-2093-9d15679f39af
+rec_area(0)
 
 # ╔═╡ 71c78614-e7bc-11ea-0959-c7a91a10d481
 if area_sierpinski(0) == 1.0 && area_sierpinski(1) == 3 / 4
@@ -330,7 +366,9 @@ Sierpinski's triangle of complexity $(n)
 
  $(sierpinski(n))
 
-has area **$(area_sierpinski(n))**
+has area **$(area_sierpinski(n))** 
+
+Using recursion the area is **$(rec_area(n))**
 
 """
 
@@ -365,12 +403,16 @@ has area **$(area_sierpinski(n))**
 # ╠═df0a4068-e7b2-11ea-2475-81b237d492b3
 # ╟─f22222b4-e7b5-11ea-0ea0-8fa368d2a014
 # ╠═ca8d2f72-e7b6-11ea-1893-f1e6d0a20dc7
-# ╟─0e2c1aaa-0208-11eb-2a50-f17a135c4e55
+# ╟─c94a0484-0346-11eb-1e6a-09134e92f2cd
+# ╠═3b0576d6-0346-11eb-3317-ed1762184688
+# ╟─f2330b48-0346-11eb-2889-314ea50d9173
+# ╠═51e6aaae-0347-11eb-3dc3-eb8890f5a13c
 # ╠═135aeff0-0206-11eb-28bf-95d2dd52cc07
+# ╠═7f199b80-0347-11eb-2093-9d15679f39af
 # ╟─71c78614-e7bc-11ea-0959-c7a91a10d481
 # ╟─c21096c0-e856-11ea-3dc5-a5b0cbf29335
 # ╟─52533e00-e856-11ea-08a7-25e556fb1127
-# ╟─147ed7b0-e856-11ea-0d0e-7ff0d527e352
+# ╠═147ed7b0-e856-11ea-0d0e-7ff0d527e352
 # ╟─c1ecad86-e7bc-11ea-1201-23ee380181a1
 # ╟─c9bf4288-e6ce-11ea-0e13-a36b5e685998
 # ╟─a60a492a-e7bc-11ea-0f0b-75d81ce46a01
