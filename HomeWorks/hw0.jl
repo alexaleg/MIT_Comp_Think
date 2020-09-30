@@ -337,7 +337,7 @@ has area **$(area_sierpinski(n))**
 # ╔═╡ Cell order:
 # ╟─fafae38e-e852-11ea-1208-732b4744e4c2
 # ╟─cdff6730-e785-11ea-2546-4969521b33a7
-# ╠═7308bc54-e6cd-11ea-0eab-83f7535edf25
+# ╟─7308bc54-e6cd-11ea-0eab-83f7535edf25
 # ╟─a2181260-e6cd-11ea-2a69-8d9d31d1ef0e
 # ╟─094e39c8-e6ce-11ea-131b-07c4a1199edf
 # ╟─31a8fbf8-e6ce-11ea-2c66-4b4d02b41995
@@ -348,8 +348,8 @@ has area **$(area_sierpinski(n))**
 # ╟─d62f223c-e754-11ea-2470-e72a605a9d7e
 # ╠═4896bf0c-e754-11ea-19dc-1380bb356ab6
 # ╠═7a01a508-e78a-11ea-11da-999d38785348
-# ╟─682db9f8-e7b1-11ea-3949-6b683ca8b47b
-# ╟─088cc652-e7a8-11ea-0ca7-f744f6f3afdd
+# ╠═682db9f8-e7b1-11ea-3949-6b683ca8b47b
+# ╠═088cc652-e7a8-11ea-0ca7-f744f6f3afdd
 # ╟─c18dce7a-e7a7-11ea-0a1a-f944d46754e5
 # ╟─5e24d95c-e6ce-11ea-24be-bb19e1e14657
 # ╟─6b8883f6-e7b3-11ea-155e-6f62117e123b
